@@ -1,0 +1,20 @@
+{
+  "name": "03.Unit-Testing-And-Modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "funcTest.js",
+  "dependencies": {
+    "chai": "^4.2.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "mocha": "^8.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
