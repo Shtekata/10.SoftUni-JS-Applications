@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+    <div id="app-loader">Loading...</div>
+    <div id="login-container" class="hidden">
+        <form>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="text" type="password" id="password">
+            </div>
+            <div id="generic-login-error" class="error"></div>
+            <button id="login-btn" type="button">Login</button>
+            <button id="register-btn" type="button">Register</button>
+        </form>
+    </div>
+    <div id="app-container" class="hidden">
+        <div>Hello <span id="user-email"></span>! <a id="logout-btn" href="">Logout</a></div>
+        You are logged
+    </div>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBmY3zWuEzRZC11dn0E3npPsAx2-XwG4ec",
+    authDomain: "test-5910c.firebaseapp.com",
+    databaseURL: "https://test-5910c.firebaseio.com",
+    projectId: "test-5910c",
+    storageBucket: "test-5910c.appspot.com",
+    messagingSenderId: "88383732614",
+    appId: "1:88383732614:web:5db85457b38b40464f8a07",
+    measurementId: "G-MK6DJ6BYQE"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+    <script src="./index.js"></script>
+</body>
+</html>
