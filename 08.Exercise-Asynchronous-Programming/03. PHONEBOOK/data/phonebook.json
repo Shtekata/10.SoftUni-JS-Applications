@@ -1,0 +1,16 @@
+{
+  "phonebook": {
+   "523f3905-4947-427b-89ae-43cb10438c3b":{
+      "person":"Gosho",
+      "phone":"+359 0967653"
+    },
+   "bbb4ca41-afd3-4cf5-8a08-06e7fcb6a3d8":{
+      "person":"Stamat",
+      "phone":"+359 09123467653"
+    },
+    "11aba162-04c8-4077-ab09-f6544ab872b2":{
+      "person":"Pesho",
+      "phone":"+359 887658529"
+    }
+  }
+}
