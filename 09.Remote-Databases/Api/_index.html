@@ -5,10 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css"/>
-    <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app-loader">Loading...</div>
+    <div id="login-container" class="hidden">
+        <form>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="text" type="password" id="password">
+            </div>
+            <div id="generic-login-error" class="error"></div>
+            <button id="login-btn" type="button">Login</button>
+            <button id="register-btn" type="button">Register</button>
+        </form>
+    </div>
+    <div id="app-container" class="hidden">
+        <div>Hello <span id="user-email"></span>! <a id="logout-btn" href="">Logout</a></div>
+        You are logged
+    </div>
      <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
@@ -31,9 +49,6 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-</script>
-<script id="loader-template" type="text/x-handlebars-template">
-    <div id="app-loader">Loading...</div>
 </script>
 <script src="./index.js"></script>
 </body>

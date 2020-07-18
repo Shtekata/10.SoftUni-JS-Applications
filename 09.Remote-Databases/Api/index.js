@@ -1,123 +1,136 @@
 (function () {
-  const appContainerEl = document.querySelector('#app-container');
-  const loginContainerEl = document.querySelector('#login-container');
+  const appEl = document.querySelector('#app');
+  const loaderTemplateScriptEl = document.querySelector('#loader-template');
 
-  const registerBtn = document.querySelector('#register-btn');
-  const loginBtn = document.querySelector('#login-btn');
-  const emailInputEl = document.querySelector('#email');
-  const passwordInputEl = document.querySelector('#password');
-  const genericLoginErrorEl = document.querySelector('#generic-login-error');
-  const appLoaderEl = document.querySelector('#app-loader');
+  //   function toggleLoader() {
+  //     if (appLoaderEl.classList.contains('hidden')) {
+  //       appLoaderEl.classList.remove('hidden');
+  //       return;
+  //     }
+  //     appLoaderEl.classList.add('hidden');
+  //   }
 
-  const userEmailEl = document.querySelector('#user-email');
-  const logoutBtn = document.querySelector('#logout-btn');
+  function afterLoginRegisterRenderFactory({
+    loginRegisterTemplate,
+    loaderTemplate,
+  }) {
+    return function afterLoginRegisterRender() {
+      const registerBtn = document.querySelector('#register-btn');
+      const loginBtn = document.querySelector('#login-btn');
+      const emailInputEl = document.querySelector('#email');
+      const passwordInputEl = document.querySelector('#password');
 
-  loginBtn.addEventListener('click', (x) => {
-    genericLoginErrorEl.textContent = '';
-    const email = emailInputEl.value;
-    const password = passwordInputEl.value;
-    if (!email || !password) {
-      alert('Please provide credentials!');
-      return;
-    }
+      loginBtn.addEventListener('click', (x) => {
+        //   genericLoginErrorEl.textContent = '';
+        const email = emailInputEl.value;
+        const password = passwordInputEl.value;
+        if (!email || !password) {
+          alert('Please provide credentials!');
+          return;
+        }
 
-    toggleLoader();
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(function () {
-        toggleLoader();
-      })
-      .catch(function (error) {
-        toggleLoader();
-        genericLoginErrorEl.textContent = error.message;
-        // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // ...
+        //   toggleLoader();
+        render(loaderTemplate);
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          // .then(function () {
+          //   render(loaderTemplate);
+          // })
+          .catch(function (error) {
+            //   toggleLoader();
+            //   genericLoginErrorEl.textContent = error.message;
+            render(
+              loginRegisterTemplate,
+              { error: error.message, email, password },
+              afterLoginRegisterRender
+            );
+          });
       });
-  });
 
-  function toggleLoader() {
-    if (appLoaderEl.classList.contains('hidden')) {
-      appLoaderEl.classList.remove('hidden');
-      return;
-    }
-    appLoaderEl.classList.add('hidden');
+      registerBtn.addEventListener('click', () => {
+        //   genericLoginErrorEl.textContent = '';
+        const email = emailInputEl.value;
+        const password = passwordInputEl.value;
+        if (!email || !password) {
+          alert('Please provide credentials!');
+          return;
+        }
+
+        //   toggleLoader();
+        render(loaderTemplate);
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          // .then(function () {
+          //   render(loaderTemplate);
+          // })
+          .catch(function (error) {
+            //   toggleLoader();
+            //   genericLoginErrorEl.textContent = error.message;
+            render(
+              loginRegisterTemplate,
+              { error: error.message, email, password },
+              afterLoginRegisterRender
+            );
+          });
+      });
+    };
   }
 
-  logoutBtn.addEventListener('click', (x) => {
-    x.preventDefault();
-    firebase
-      .auth()
-      .signOut()
-      .catch(function (error) {
-        console.error(error);
+  function afterAuthContentRenderFactory() {
+    return function afterAuthContentRender() {
+      const logoutBtn = document.querySelector('#logout-btn');
+      logoutBtn.addEventListener('click', (x) => {
+        x.preventDefault();
+        firebase
+          .auth()
+          .signOut()
+          .catch(function (error) {
+            console.error(error);
+          });
       });
-  });
+    };
+  }
 
-  registerBtn.addEventListener('click', () => {
-    genericLoginErrorEl.textContent = '';
-    const email = emailInputEl.value;
-    const password = passwordInputEl.value;
-    if (!email || !password) {
-      alert('Please provide credentials!');
-      return;
-    }
-
-    toggleLoader();
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(function () {
-        toggleLoader();
-      })
-      .catch(function (error) {
-        toggleLoader();
-        genericLoginErrorEl.textContent = error.message;
-        // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // ...
-      });
-  });
+  function render(template, data, ...cbs) {
+    appEl.innerHTML = template(data);
+    cbs.forEach((x) => x());
+  }
 
   function init() {
-    // console.log(firebase.app().name); // "[DEFAULT]"
+    const generateTemplate = (x) => Handlebars.compile(x);
+    const loaderTemplate = generateTemplate(loaderTemplateScriptEl.innerHTML);
+    render(loaderTemplate);
 
-    //   firebase
-    //     .auth()
-    //     .createUserWithEmailAndPassword(email, password)
-    //     .catch(function (error) {
-    //       // Handle Errors here.
-    //       var errorCode = error.code;
-    //       var errorMessage = error.message;
-    //       // ...
-    //     });
-
-    firebase.auth().onAuthStateChanged(function (user) {
-      //   console.log(user);
-      if (user) {
-        loginContainerEl.classList.add('hidden');
-        appContainerEl.classList.remove('hidden');
-        userEmailEl.textContent = user.email;
-        // User is signed in.
-        // var displayName = user.displayName;
-        // var email = user.email;
-        // var emailVerified = user.emailVerified;
-        // var photoURL = user.photoURL;
-        // var isAnonymous = user.isAnonymous;
-        // var uid = user.uid;
-        // var providerData = user.providerData;
-        // ...
-      } else {
-        // User is signed out.
-        // ...
-        appContainerEl.classList.add('hidden');
-        loginContainerEl.classList.remove('hidden');
-      }
-      appLoaderEl.classList.add('hidden');
-    });
+    Promise.all([
+      fetch('./templates/auth-content.hbs').then((x) => x.text()),
+      //   fetch('./templates/loader.hbs').then((x) => x.text()),
+      fetch('./templates/login-register-form.hbs').then((x) => x.text()),
+    ])
+      .then((x) => x.map(generateTemplate))
+      // .then([authContentTemplate, loaderTemplate, loginRegisterTemplate]) => {
+      .then(([authContentTemplate, loginRegisterTemplate]) => {
+        firebase.auth().onAuthStateChanged(function (user) {
+          if (user) {
+            render(
+              authContentTemplate,
+              { email: user.email },
+              afterAuthContentRenderFactory()
+            );
+          } else {
+            render(
+              loginRegisterTemplate,
+              {},
+              afterLoginRegisterRenderFactory({
+                authContentTemplate,
+                loginRegisterTemplate,
+                loaderTemplate,
+              })
+            );
+          }
+        });
+      });
   }
 
   init();

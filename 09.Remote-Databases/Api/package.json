@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "serve":"lite-server"
+    },
+    "dependencies": {
+        "handlebars": "4.7.6"
+    }
+}
