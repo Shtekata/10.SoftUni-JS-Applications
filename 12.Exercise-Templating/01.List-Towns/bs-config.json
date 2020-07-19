@@ -1,0 +1,8 @@
+{
+"port": 8000,
+"files" : [ "./**/*.{js, html, css}","../**/*.min.js" ],
+"open" : "/01.list-towns.html",
+"server": { "baseDir": "./" },
+"http" : true,
+"browser": ["firefox"]
+}

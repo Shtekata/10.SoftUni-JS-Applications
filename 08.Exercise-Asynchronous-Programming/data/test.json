@@ -1,0 +1,20 @@
+{
+    "catches":{
+        "-MBZ6v0WGSb9W1JP1EUk":{
+            "angler":"Hristomirr",
+            "bait":"meat",
+            "captureTime":"14",
+            "location":"Pacific Ocean",
+            "species":"Shark",
+            "weight":"12"
+        },
+        "-BMZ6vfasddasd1JP1EU":{
+            "angler":"Paulo Amorim",
+            "bait":"trolled pink",
+            "captureTime":"80",
+            "location":"Victoria, Brazil",
+            "species":"Atlantic Blue Marlin",
+            "weight":"636"
+        }
+    }
+}
