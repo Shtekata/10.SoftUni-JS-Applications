@@ -1,0 +1,101 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Movies</title>
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="styles/notifications.css" type="text/css">
+  <link rel="stylesheet" href="styles/style.css" type="text/css">
+  <script src="./node_modules/jquery/dist/jquery.js"></script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+  <script src="./node_modules/sammy/lib/min/sammy-latest.min.js"></script>
+  <script src="./node_modules/sammy/lib/min/plugins/sammy.handlebars-latest.min.js"></script>
+  <script type="module" src="./js/app.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    
+    <div id="myMovies">
+      <h1>My Movies</h1>
+      <div class="movies">
+        <div class="movie">
+          <h2>Title: Us (2019)</h2>
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BZTliNWJhM2YtNDc1MC00YTk1LWE2MGYtZmE4M2Y5ODdlNzQzXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_UX140_CR0,0,140,209_AL_.jpg">
+          <p>Available Tickets: 50</p>
+          <div class="btn-group">
+            <button><a href="#">Edit</a></button>
+            <button><a href="#">Delete</a></button>
+            <button><a href="#">Buy Ticket</a></button>
+            <button><a href="#">Details</a></button>
+          </div>
+        </div>
+        <div class="movie">
+          <h2>Title: Hotel Mumbai (2018)</h2>
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BYTJlZWY2YjYtZGIxMy00MDEwLTliNzMtZGM3MDQ1NzlmNDY1XkEyXkFqcGdeQXVyNDY2MjcyOTQ@._V1_UY209_CR0,0,140,209_AL_.jpg">
+          <p>Available Tickets: 14</p>
+          <div class="btn-group">
+            <button><a href="#">Edit</a></button>
+            <button><a href="#">Delete</a></button>
+            <button><a href="#">Buy Ticket</a></button>
+            <button><a href="#">Details</a></button>
+          </div>
+        </div>
+        <div class="movie">
+          <h2>Title: test movie</h2>
+          <img src="https://m.media-amazon.com/images/M/MV5BMTQzOTUyODMyOV5BMl5BanBnXkFtZTcwNzY2MzU1MQ@@._V1_.jpg">
+          <p>Available Tickets: 49</p>
+          <div class="btn-group">
+            <button><a href="#">Edit</a></button>
+            <button><a href="#">Delete</a></button>
+            <button><a href="#">Buy Ticket</a></button>
+            <button><a href="#">Details</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="cinema">
+      <h1>All Movies</h1>
+      <form action="" method="GET">
+        <label>Search genre:</label>
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+      </form>
+      <div class="movies">
+        <div class="movie">
+          <h2>Title: Us (2019)</h2>
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BZTliNWJhM2YtNDc1MC00YTk1LWE2MGYtZmE4M2Y5ODdlNzQzXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_UX140_CR0,0,140,209_AL_.jpg">
+          <p>Available Tickets: 50</p><button><a href="#">Buy Ticket</a></button>
+          <button><a href="#">Details</a></button>
+        </div>
+        <div class="movie">
+          <h2>Title: Triple Threat (2019)</h2>
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BYTY1MjRhYmYtZDg4Yy00ZWRiLWIwYzktZThkY2E0YjZlNjgxXkEyXkFqcGdeQXVyMTc3MjY3NTY@._V1_UY209_CR0,0,140,209_AL_.jpg">
+          <p>Available Tickets: 22</p><button><a href="#">Buy Ticket</a></button>
+          <button><a href="#">Details</a></button>
+        </div>
+        <div class="movie">
+          <h2>Title: Hotel Mumbai (2018)</h2>
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BYTJlZWY2YjYtZGIxMy00MDEwLTliNzMtZGM3MDQ1NzlmNDY1XkEyXkFqcGdeQXVyNDY2MjcyOTQ@._V1_UY209_CR0,0,140,209_AL_.jpg">
+          <p>Available Tickets: 14</p><button><a href="#">Buy Ticket</a></button>
+          <button><a href="#">Details</a></button>
+        </div>
+        <div class="movie">
+          <h2>Title: test movie</h2>
+          <img src="https://m.media-amazon.com/images/M/MV5BMTQzOTUyODMyOV5BMl5BanBnXkFtZTcwNzY2MzU1MQ@@._V1_.jpg">
+          <p>Available Tickets: 49</p><button><a href="#">Buy Ticket</a></button>
+          <button><a href="#">Details</a></button>
+        </div>
+      </div>
+      
+    </div>
+</body>
+</html>
