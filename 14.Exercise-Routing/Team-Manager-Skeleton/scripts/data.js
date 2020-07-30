@@ -75,7 +75,7 @@ async function setUserTeamId(userId, teamId) {
       'Content-Type': 'application/json',
       'user-token': token,
     },
-    body: JSON.stringify(teamId),
+    body: JSON.stringify({ teamId }),
   }).then((x) => x.json());
 }
 

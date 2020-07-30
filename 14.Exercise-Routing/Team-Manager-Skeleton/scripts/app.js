@@ -13,7 +13,9 @@ $(() => {
     this.use('Handlebars', 'hbs');
 
     this.userData = {
-      loggedIn: false,
+      username: localStorage.getItem('username') || '',
+      userId: localStorage.getItem('userId') || '',
+      loggedIn: localStorage.getItem('username') || false,
       hasTeam: false,
       isAuthor: false,
       isOnTeam: false,

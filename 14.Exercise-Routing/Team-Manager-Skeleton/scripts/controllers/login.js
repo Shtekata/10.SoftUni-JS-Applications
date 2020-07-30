@@ -22,6 +22,11 @@ export async function loginPost() {
     this.app.userData.loggedIn = true;
     this.app.userData.username = result.username;
     this.app.userData.userId = result.objectId;
+
+    if (result.teamId) {
+      this.app.userData.hasTeam = true;
+      this.app.userData.teamId = result.teamId;
+    }
     localStorage.setItem('userToken', result['user-token']);
     localStorage.setItem('username', result.username);
     localStorage.setItem('userId', result.objectId);

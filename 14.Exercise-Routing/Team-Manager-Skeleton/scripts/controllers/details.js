@@ -47,7 +47,7 @@ export default async function () {
 
   try {
     const data = await getTeamById(this.params.id);
-    this.partial('/templates/catalog/details.hbs', data);
+    Object.assign(data, this.app.userData);
 
     if (data.hasOwnProperty('errorData')) {
       const error = new Error();
@@ -63,9 +63,9 @@ export default async function () {
       data.isOnTeam = true;
     }
 
+    this.partial('/templates/catalog/details.hbs', data);
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
-
 }
