@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <app-root test="123" title="My Title" value="My Value">
+        <h1 slot="header">My custom header</h1>
+        <span class="test">FROM WEB COMPONENT</span>
+        <h4 slot="footer">My custom footer</footer></h4>
+    </app-root>
+    </template>
+    <script src="./main.js"></script>
+    <script>
+        const appRoot=document.querySelector('app-root');
+        setTimeout(function(){
+          appRoot.setAttribute('title','My Title 2');
+          appRoot.myProp=123;
+        },3000);
+    </script>
+</body>
+</html>
