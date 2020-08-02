@@ -64,7 +64,13 @@
             </div>
         </div>
     </template>
-
+    <app-slider id="test" is-inverted="true" value="10" step="10"></app-slider>
+    <script type="module" src="slider.js"></script>
+    <script>
+        setTimeout(function(){
+            document.querySelector('#test').setAttribute('value',60);
+        },3000);
+    </script>
 </body>
 
 </html>

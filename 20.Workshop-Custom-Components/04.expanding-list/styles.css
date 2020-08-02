@@ -30,3 +30,7 @@ li::before {
 .closed .open::before {
     display: none;
 }
+
+li.closed > ul {
+    display: none;
+}

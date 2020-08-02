@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Button - Component</title>
-</head>
-<body>
-    <template id="app-button">
-        <style>
+    <style>
              .btn {
                 padding: 0.5em 1em;
                 border-radius: 0.5em;
@@ -40,7 +37,12 @@
                 background-color: rgb(244, 67, 54);
             }
         </style>
+</head>
+<body>
+    <!-- <template id="app-button">
         <button class="btn"></button>
-    </template>
+    </template> -->
+    <button btn-type="warn" text="123" is="app-button"></button>
+    <script src="app-btn.js"></script>
 </body>
 </html>

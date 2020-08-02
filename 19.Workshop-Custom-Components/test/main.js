@@ -38,14 +38,19 @@ function withUpdate(klass, templateFn) {
 //         )}`}
 //   `;
 
-const getAppRootTemplate = (context) =>
-  html`
+const getAppRootTemplate = (context) => {
+  const loader = html`<div>Loading...</div>`;
+  const users = html`<user-list
+    @select=${context.selectUserHandler}
+    .users=${context.users || []}
+  ></user-list>`;
+
+  return html`
     <button @click=${context.toggleDisabledHandler}>Toggle Disabled</button>
     <input ?disabled=${context.isDisabled} value="${context.inputValue}" />
-    ${context.isLoading
-      ? html`<div>Loading...</div>`
-      : html`<user-list .users=${context.users || []}></user-list>`}
+    ${context.isLoading ? loader : users}
   `;
+};
 
 // const getAppRootTemplate = (context) =>
 //   html`
@@ -57,8 +62,13 @@ const getAppRootTemplate = (context) =>
 //   `;
 
 class AppRoot extends HTMLElement {
+  set inputValue(newValue) {
+    this._inputValue = newValue;
+    this._update();
+  }
+
   get inputValue() {
-    return '123';
+    return this._inputValue || '';
   }
 
   set isLoading(newValue) {
@@ -109,6 +119,11 @@ class AppRoot extends HTMLElement {
     this.users = [];
   }
 
+  selectUserHandler(x) {
+    console.log(x);
+    this.inputValue = x.detail.userId;
+  }
+
   connectedCallback() {
     this.loadUsers().then((x) => {
       this.isLoading = false;
@@ -125,13 +140,18 @@ class AppRoot extends HTMLElement {
 }
 
 customElements.define('app-root', withUpdate(AppRoot, getAppRootTemplate));
-
+/////////////////////////////////////////////////////////////////////////////////////////
 const getUserListTemplate = (context) =>
-  html`${repeat(
-    context.users,
-    (x) => x.id,
-    (y) => html`<div>${y.email}</div>`
-  )}`;
+  html`<ul @click=${context.selectUserHandler}>
+    ${repeat(
+      context.users,
+      (x) => x.id,
+      (x) =>
+        html`<li class="user-email" data-id=${x.id} data-username=${x.username}>
+          ${x.email}
+        </li>`
+    )}
+  </ul>`;
 
 class UsersList extends HTMLElement {
   set users(newValue) {
@@ -141,6 +161,15 @@ class UsersList extends HTMLElement {
 
   get users() {
     return this._users;
+  }
+
+  selectUserHandler(x) {
+    const target = x.target;
+    if (!target.classList.contains('user-email')) {
+      return;
+    }
+    const userId = target.getAttribute('data-id');
+    this.dispatchEvent(new CustomEvent('select', { detail: { userId } }));
   }
 
   constructor() {
