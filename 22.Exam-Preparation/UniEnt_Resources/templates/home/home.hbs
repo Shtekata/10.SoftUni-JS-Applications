@@ -1,0 +1,13 @@
+{{>header}}
+{{#if username}}
+{{#if events}}
+{{#each events}}
+{{>event}}
+{{/each}}
+{{else}}
+{{>homeNoEvents}}
+{{/if}}
+{{else}}
+{{>homeGuest}}
+{{/if}}
+{{>footer}}

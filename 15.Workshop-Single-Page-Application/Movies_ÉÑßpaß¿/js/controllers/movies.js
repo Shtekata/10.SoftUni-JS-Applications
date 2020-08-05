@@ -85,7 +85,7 @@ export async function details() {
 
     if (movie.hasOwnProperty('errorData')) {
       const error = new Error();
-      Object.assign(error, result);
+      Object.assign(error, movie);
       throw error;
     }
 
