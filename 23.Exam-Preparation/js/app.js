@@ -50,7 +50,7 @@ window.addEventListener('load', () => {
       editPost.call(x);
     });
 
-    this.get('', function () {
+    this.get('', () => {
       this.swap('<h1>404 Page not found!</h1>');
     });
   });

@@ -14,6 +14,7 @@ export default class API {
       if (endRequest) endRequest();
     };
   }
+
   host(endpoint) {
     return `https://api.backendless.com/${this.appId}/${this.apiKey}/${endpoint}`;
   }
@@ -46,7 +47,9 @@ export default class API {
     });
     options.method = 'POST';
     options.body = JSON.stringify(body);
-    const result = await fetch(this.host(endpoint), options).then((x) => x.json());
+    const result = await fetch(this.host(endpoint), options).then((x) =>
+      x.json()
+    );
     this.endRequest();
     return result;
   }
@@ -58,7 +61,9 @@ export default class API {
     });
     options.method = 'PUT';
     options.body = JSON.stringify(body);
-    const result = await fetch(this.host(endpoint), options).then((x) => x.json());
+    const result = await fetch(this.host(endpoint), options).then((x) =>
+      x.json()
+    );
     this.endRequest();
     return result;
   }
@@ -67,7 +72,9 @@ export default class API {
     const options = this.getOptions();
     options.method = 'DELETE';
     this.beginRequest();
-    const result = await fetch(this.host(endpoint), options).then((x) => x.json());
+    const result = await fetch(this.host(endpoint), options).then((x) =>
+      x.json()
+    );
     this.endRequest();
     return result;
   }

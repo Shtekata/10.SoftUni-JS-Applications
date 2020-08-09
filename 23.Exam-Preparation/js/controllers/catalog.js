@@ -108,17 +108,17 @@ export async function deleteRecipe() {
 }
 
 export async function createPost() {
-  const recipe = {
+  let recipe = {
     meal: this.params.meal,
     ingredients: this.params.ingredients.split(',').map((x) => x.trim()),
     prepMethod: this.params.prepMethod,
     description: this.params.description,
     foodImageURL: this.params.foodImageURL,
-    category: this.params.category,
     likes: 0,
-    categoryImageURL:
-      'https://i2.wp.com/butterwithasideofbread.com/wp-content/uploads/2012/07/Easiest-Best-Homemade-Bread.BSB_.IMG_6014.jpg?ssl=1',
   };
+
+  recipe = category(this.params.category, recipe);
+
   try {
     if (recipe.meal.length < 4) {
       throw new Error('Meal name mast be at least 4 characters long');
@@ -154,14 +154,15 @@ export async function createPost() {
 
 export async function editPost() {
   const id = this.params.id;
-  const recipe = await getRecipeById(id);
+  let recipe = await getRecipeById(id);
 
   recipe.meal = this.params.meal;
   recipe.ingredients = this.params.ingredients.split(',').map((x) => x.trim());
   recipe.prepMethod = this.params.prepMethod;
   recipe.description = this.params.description;
   recipe.foodImageURL = this.params.foodImageURL;
-  recipe.category = this.params.category;
+
+  recipe = category(this.params.category, recipe);
 
   try {
     if (recipe.meal.length < 4) {
@@ -194,4 +195,51 @@ export async function editPost() {
   } catch (x) {
     showError(x.message);
   }
+}
+
+function category(categorySelect, recipe) {
+  const category = {
+    1: {
+      category: 'Vegetables and legumes/beans',
+      categoryImageUrl:
+        'https://tastethefood.weebly.com/uploads/5/2/4/1/52410647/8600737_orig.jpg',
+    },
+    2: {
+      category: 'Fruits',
+      categoryImageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/2/2f/Culinary_fruits_front_view.jpg',
+    },
+    3: {
+      category: 'Fruits',
+      categoryImageUrl:
+        'https://healthy-kids.com.au/wp-content/uploads/2013/12/ComplexCarbohydrateFamily.jpg',
+    },
+    4: {
+      category: 'Milk, cheese, eggs and alternatives',
+      categoryImageUrl:
+        'https://previews.123rf.com/images/sergioz/sergioz1102/sergioz110200027/8902123-milk-cheese-yogurt-and-eggs-on-a-white-background.jpg',
+    },
+    5: {
+      category: 'Lean meats and poultry, fish and alternatives',
+      categoryImageUrl:
+        'https://assetsds.cdnedge.bluemix.net/sites/default/files/styles/big_2/public/feature/images/legumes.jpg?itok=4wqvSFde',
+    },
+  };
+  if (categorySelect === '1') {
+    recipe.category = category[1].category;
+    recipe.categoryImageUrl = category[1].categoryImageUrl;
+  } else if (categorySelect === '2') {
+    recipe.category = category[2].category;
+    recipe.categoryImageUrl = category[2].categoryImageUrl;
+  } else if (categorySelect === '3') {
+    recipe.category = category[3].category;
+    recipe.categoryImageUrl = category[3].categoryImageUrl;
+  } else if (categorySelect === '4') {
+    recipe.category = category[4].category;
+    recipe.categoryImageUrl = category[4].categoryImageUrl;
+  } else if (categorySelect === '5') {
+    recipe.category = category[5].category;
+    recipe.categoryImageUrl = category[5].categoryImageUrl;
+  }
+  return recipe;
 }
