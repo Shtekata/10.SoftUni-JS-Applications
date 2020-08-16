@@ -1,0 +1,30 @@
+.notifications {
+    float: right;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    text-align: center;
+    margin: 1em;
+}
+
+.notification-message {
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: right;
+    display: inline-block;
+    padding:  0.5em 2em 0.5em 2em;
+    border-radius: 10px;
+}
+
+.notificationSuccess {
+  background: #393;
+}
+
+.notificationError {
+  background: #F50;
+}
+
+.notificationLoading{
+    background: #7CB3E9;
+}
+

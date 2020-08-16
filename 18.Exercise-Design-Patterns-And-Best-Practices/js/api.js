@@ -69,7 +69,7 @@ export default class API {
   }
 
   register(username, password) {
-    return post(this.endpoints.REGISTER, { username, password });
+    return this.post(this.endpoints.REGISTER, { username, password });
   }
 
   async login(username, password) {
