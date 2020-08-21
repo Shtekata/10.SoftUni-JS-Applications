@@ -1,0 +1,28 @@
+{{>header}}
+{{#with entity}}
+<div class="offer-details">
+    <h1>{{brand}} {{name}}</h1>
+    <div class="info">
+        <img src="{{imageUrl}}"
+            alt="">
+        <div class="description">{{description}}
+            <br>
+            <br>
+            <p class="price">${{price}}</p>
+        </div>
+    </div>
+    <div class="actions">
+        {{#if isOwner}}
+        <a href="#/edit/{{objectId}}">Edit</a>
+        <a href="#/delete/{{objectId}}">Delete</a>
+        {{else}}
+        {{#unless getItem}}
+        <a id="getItemBtn" href="#/collect/{{objectId}}">Buy</a>
+        {{else}}
+        <span>You bought it</span>
+        {{/unless}}
+        {{/if}}
+    </div>
+</div>
+{{/with}}
+{{>footer}}
