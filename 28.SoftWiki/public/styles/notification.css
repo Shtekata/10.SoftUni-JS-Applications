@@ -1,0 +1,31 @@
+#notifications {
+  position: fixed;
+  top: 50px;
+  right: 0px;
+}
+
+#successBox {
+   background-color: aqua; 
+}
+
+#loadingBox {
+    background-color: blueviolet;
+}
+
+#errorBox {
+    background-color: rgba(238, 74, 74, 0.699);
+}
+
+.notification {
+    display: none;
+    text-align: center;
+    margin: 0 auto;
+    padding: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 6px;
+    color: white;
+    font-style: italic;
+    text-decoration: underline;
+    box-shadow: 0 5px 10px #cccccc;
+}

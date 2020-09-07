@@ -1,0 +1,54 @@
+{{>header}}
+{{#if email}}
+<div class="content">
+    <section class="js">
+        <h2>JavaScript</h2>
+        <div class="articles">
+            {{#if jsArticles}}
+            {{#each jsArticles}}
+            {{>article}}
+            {{/each}}
+            {{else}}
+            {{>noArticles}}
+            {{/if}}
+        </div>
+    </section>
+    <section class="CSharp">
+        <h2>C#</h2>
+        <div class="articles">
+            {{#if cSharpArticles}}
+            {{#each cSharpArticles}}
+            {{>article}}
+            {{/each}}
+            {{else}}
+            {{>noArticles}}
+            {{/if}}
+        </div>
+    </section>
+    <section class="Java">
+        <h2>Java</h2>
+        <div class="articles">
+            {{#if javaArticles}}
+            {{#each javaArticles}}
+            {{>article}}
+            {{/each}}
+            {{else}}
+            {{>noArticles}}
+            {{/if}}
+        </div>
+    </section>
+    <section class="Pyton">
+        <h2>Pyton</h2>
+        <div class="articles">
+            {{#if pytonArticles}}
+            {{#each pytonArticles}}
+            {{>article}}
+            {{/each}}
+            {{else}}
+            {{>noArticles}}
+            {{/if}}
+        </div>
+    </section>
+</div>
+{{/if}}
+{{>footer}}
